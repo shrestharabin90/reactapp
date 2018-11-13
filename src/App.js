@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TodoTable from './TodoTable';
 
 class App extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends Component {
           <h2>Simple Todolist</h2>
         </div>
         <div>
+
           <form onSubmit={this.addTodo}>
           Description:
             <input type="text" onChange={this.inputDescrChanged} value={this.state.description}/>
@@ -47,24 +49,12 @@ class App extends Component {
             <input type="date" onChange={this.inputDateChanged} value={this.state.date}/>
             <input type="submit" value="Add"/>
           </form>
-        </div>
-        <div>
-          <table>
-            <tr>
-              <th>Description</th>
-              <th>Date</th>
-            </tr>
-            {this.state.todos.map((item, index) =>
-            <tr key={index}>
-                <td>{item.desc}</td>
-                <td>{item.date}</td>
-                <td><button id={index} onClick={this.deleteRow}>Delete</button></td>
-            </tr>)}
-          </table>
-        </div>
+        <TodoTable todos={this.state.todos} />
+        <button id={index} onClick={this.deleteRow}>Delete</button>
+      </div>
       </div>
     );
   }
 }
 
-export default App;
+export {default} from App;
